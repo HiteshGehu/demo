@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title mode="md">Orders</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="white">
+        <ion-icon name="search-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+
+  <ion-list>
+    <ion-list-header mode="md" color="light" class="ion-margin-vertical">
+      PAST ORDERS
+    </ion-list-header>
+
+    <ion-content>
+      <div *ngFor="let item of items">
+      <ion-card>
+
+        <ion-item lines="none" [detail]="true" class="type">
+          <ion-label>
+            <b>
+              {{ item.type }}
+            </b>
+            <p *ngIf="item.location">
+              <ion-text>{{ item.location }}</ion-text>
+            </p>
+          </ion-label>
+        </ion-item>
+    
+        <ion-row class="pickdrop">
+          <ion-col size="6" class="pick">
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img src="assets/imgs/marker_pick.png" />
+              </ion-thumbnail>
+              <ion-label>{{ item.pickUpAddress }}</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img src="assets/imgs/marker.png" />
+              </ion-thumbnail>
+              <ion-label>{{ item.dropOffAddress }}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    
+        <div class="items">
+          <ion-row *ngFor="let menuItem of item.items">
+            <ion-text color="dark">
+              <ion-text>{{ menuItem.name }}</ion-text>
+              <ion-text>{{ menuItem.quantity }}</ion-text>
+            </ion-text>
+          </ion-row>
+        </div>
+    
+        <ion-row class="ion-padding amount">
+          <ion-text color="dark">
+            Paid ₹<ion-text color="primary">{{ item.amount.toFixed(2) }}</ion-text>
+          </ion-text>
+        </ion-row>
+    
+        <ion-row class="delete">
+          <ion-col size="6">
+            <ion-button fill="clear">
+              <ion-icon color="primary" name="checkmark-circle" slot="start"></ion-icon>
+              <ion-text color="dark">{{ item.status }}</ion-text>
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button shape="round" expand="block" color="danger" (click)="deleteItem(item.id)">
+              <ion-text>Delete</ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-card>
+
+      </div>
+    </ion-content>
+    
+  </ion-list>
+
+</ion-content>

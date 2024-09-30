@@ -1,0 +1,65 @@
+<form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)" class="ion-padding full-height">
+
+  <!-- Order Type -->
+  <ion-item>
+    <ion-label position="floating">Order Type</ion-label>
+    <ion-input type="text" name="type" ngModel required></ion-input>
+  </ion-item>
+
+  <!-- Pick Address -->
+  <ion-item>
+    <ion-label position="floating">Pick Address</ion-label>
+    <ion-input type="text" name="pickAddress" ngModel></ion-input>
+  </ion-item>
+
+  <!-- Drop Address -->
+  <ion-item>
+    <ion-label position="floating">Drop Address</ion-label>
+    <ion-input type="text" name="dropAddress" ngModel></ion-input>
+  </ion-item>
+
+  <!-- Amount -->
+  <ion-item>
+    <ion-label position="floating">Amount</ion-label>
+    <ion-input type="number" name="amount" ngModel required></ion-input>
+  </ion-item>
+
+  <!-- Order Status -->
+  <ion-item>
+    <ion-label position="floating">Order Status</ion-label>
+    <ion-select name="status" ngModel required>
+      <ion-select-option value="Completed">Completed</ion-select-option>
+      <ion-select-option value="Pending">Pending</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Items (optional) -->
+  <div class="items">
+    <ion-row *ngFor="let item of newItems; let i = index">
+      <ion-col size="8">
+        <ion-item>
+          <ion-label position="floating">Item Name</ion-label>
+          <ion-input type="text" [(ngModel)]="newItems[i].name" name="itemName-{{i}}" required></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Quantity</ion-label>
+          <ion-input type="number" [(ngModel)]="newItems[i].quantity" name="itemQuantity-{{i}}" required></ion-input>
+        </ion-item>
+      </ion-col>
+      
+      <ion-button color="danger" (click)="removeItem(i)">Remove</ion-button>
+      <!-- <ion-item size="2">
+      </ion-item> -->
+    </ion-row>
+    <ion-button expand="block" (click)="addItem()">Add Item</ion-button>
+  </div>
+
+  <ion-row class="ion-padding bottom-row">
+    <ion-col>
+      <ion-button color="success" type="submit" expand="block" [disabled]="!orderForm.valid">Submit Order</ion-button>
+    </ion-col>
+  </ion-row>
+  
+</form>

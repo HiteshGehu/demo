@@ -1,0 +1,34 @@
+<div *ngIf="user">
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-item lines="none">
+        <ion-label color="primary">
+          <h1>Welcome! </h1>
+          <p>
+            <ion-text color="dark">
+              {{ user.displayName }}
+            </ion-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card class="ion-padding">
+    <ion-item lines="full">
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input [(ngModel)]="user.displayName"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Phone</ion-label>
+      <ion-input [(ngModel)]="user.phoneNumber"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="updateUser()">Update</ion-button>
+    <ion-button expand="full" color="danger" (click)="logout()">Logout</ion-button>
+  </ion-card>
+
+</div>

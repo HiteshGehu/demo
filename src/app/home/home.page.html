@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sign up / Login Page</ion-title>
+    <ion-buttons slot="end" (click)="togglePage()">
+      <ion-button *ngIf="!loggingIn">Login</ion-button>
+      <ion-button *ngIf="loggingIn">Signup</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-padding" *ngIf="!loggingIn">
+    <h2>Sign up</h2>
+    <ion-item lines="full">
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input [(ngModel)]='name'></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Phone</ion-label>
+      <ion-input [(ngModel)]='phone'></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]='email'></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input [(ngModel)]='password'></ion-input>
+    </ion-item>
+    <ion-button (click)='signup()' expand='full'>Signup</ion-button>
+  </ion-card>
+
+  <!-- Login -->
+  <ion-card class="ion-padding" *ngIf="loggingIn">
+    <h2>Login</h2>
+    <ion-item lines="full">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]='loginEmail'></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input [(ngModel)]='loginPassword'></ion-input>
+    </ion-item>
+    <ion-button (click)='login()' expand='full'>Login</ion-button>
+  </ion-card>
+</ion-content>
